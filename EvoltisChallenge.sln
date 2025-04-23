@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "evoltischallenge.client", "evoltischallenge.client\evoltischallenge.client.esproj", "{544E8446-DE01-D4B0-3790-10DF58317418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvoltisChallenge.Server", "EvoltisChallenge.Server\EvoltisChallenge.Server.csproj", "{CCD745F6-4797-4860-AF11-46F406622397}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{544E8446-DE01-D4B0-3790-10DF58317418}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CCD745F6-4797-4860-AF11-46F406622397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD745F6-4797-4860-AF11-46F406622397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD745F6-4797-4860-AF11-46F406622397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD745F6-4797-4860-AF11-46F406622397}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C56E1459-4C95-433C-AFC1-B991B6BA5142}
+	EndGlobalSection
+EndGlobal
