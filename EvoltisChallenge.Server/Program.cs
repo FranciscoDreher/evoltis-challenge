@@ -35,6 +35,18 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 #endregion
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowFrontend",
+                      policy =>
+                      {
+                          policy.WithOrigins("https://127.0.0.1:52907",
+                                              "https://localhost:52907")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -48,6 +60,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthorization();
 

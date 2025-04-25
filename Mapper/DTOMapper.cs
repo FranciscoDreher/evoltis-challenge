@@ -8,8 +8,7 @@ namespace Mapper
     {
         public DtoMapper()
         {
-            CreateMap<Product, ProductDto>();
-            CreateMap<ProductDto, Product>();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }
