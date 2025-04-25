@@ -1,0 +1,33 @@
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+    <div class="field">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" pInputText formControlName="name" [ngClass]="{'ng-invalid ng-dirty': nameInvalid}" />
+      <small class="p-error" *ngIf="nameInvalid">El nombre es requerido y debe tener máximo 100 caracteres.</small>
+    </div>
+    
+    <div class="field">
+      <label for="description">Descripción</label>
+      <textarea id="description" pInputTextarea formControlName="description" rows="3"></textarea>
+    </div>
+    
+    <div class="field">
+      <label for="price">Precio</label>
+      <p-inputNumber id="price" formControlName="price" mode="currency" currency="USD" locale="en-US" [ngClass]="{'ng-invalid ng-dirty': priceInvalid}"></p-inputNumber>
+      <small class="p-error" *ngIf="priceInvalid">El precio es requerido y debe ser mayor a 0.</small>
+    </div>
+    
+    <div class="field">
+      <label for="stockQuantity">Cantidad en Stock</label>
+      <p-inputNumber id="stock" formControlName="stock" [showButtons]="true" [min]="0"></p-inputNumber>
+    </div>
+    
+    <div class="field-checkbox">
+      <p-checkbox formControlName="isActive" [binary]="true" inputId="isActive"></p-checkbox>
+      <label for="isActive">Disponible</label>
+    </div>
+    
+    <div class="flex justify-content-end mt-4">
+      <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="cancelForm()"></button>
+      <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+    </div>
+  </form>

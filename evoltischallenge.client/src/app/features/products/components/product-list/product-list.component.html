@@ -1,0 +1,97 @@
+<div class="card">
+    <p-toast></p-toast>
+    <p-toolbar styleClass="mb-4 gap-2">
+      <ng-template pTemplate="left">
+        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+      </ng-template>
+    </p-toolbar>
+  
+    <p-table 
+      [value]="(products$ | async) || []" 
+      [loading]="loading$ | async"
+      [paginator]="true" 
+      [rows]="10" 
+      [rowsPerPageOptions]="[5, 10, 25]" 
+      [globalFilterFields]="['name', 'description', 'price']"
+      styleClass="p-datatable-gridlines" 
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" 
+      currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} productos"
+      responsiveLayout="scroll">
+      
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between align-items-center">
+          <h5 class="m-0">Administración de Productos</h5>
+        </div>
+      </ng-template>
+      
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+          <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
+          <th>Descripción</th>
+          <th pSortableColumn="price">Precio <p-sortIcon field="price"></p-sortIcon></th>
+          <th pSortableColumn="stockQuantity">Stock <p-sortIcon field="stockQuantity"></p-sortIcon></th>
+          <th pSortableColumn="isAvailable">Disponible <p-sortIcon field="isAvailable"></p-sortIcon></th>
+          <th>Acciones</th>
+        </tr>
+        <tr>
+          <th>
+            <p-columnFilter type="numeric" field="id"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="text" field="name"></p-columnFilter>
+          </th>
+          <th></th>
+          <th>
+            <p-columnFilter type="numeric" field="price"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="numeric" field="stockQuantity"></p-columnFilter>
+          </th>
+          <th>
+            <p-columnFilter type="boolean" field="isAvailable"></p-columnFilter>
+          </th>
+          <th></th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency:'USD' }}</td>
+          <td>{{ product.stockQuantity }}</td>
+          <td>
+            <span [class]="'product-badge status-' + (product.isAvailable ? 'instock' : 'outofstock')">
+              {{ product.isAvailable ? 'Disponible' : 'No disponible' }}
+            </span>
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduct(product)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="summary">
+        <div>En total hay {{ (products$ | async)?.length || 0 }} productos.</div>
+      </ng-template>
+    </p-table>
+  </div>
+  
+  <p-dialog 
+    [(visible)]="displayDialog" 
+    [style]="{ width: '450px' }" 
+    header="Detalles del Producto" 
+    [modal]="true" 
+    styleClass="p-fluid">
+    <app-product-form 
+      [product]="selectedProduct" 
+      (save)="saveProduct($event)" 
+      (cancel)="hideDialog()">
+    </app-product-form>
+  </p-dialog>
+  
+  <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
